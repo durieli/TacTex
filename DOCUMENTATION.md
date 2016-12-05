@@ -40,48 +40,75 @@ The simulation progresses in timeslots, each representing 1 hour in the real wor
 * When the server finishes the timeslot processing, it sends a <ts-done> message to the brokers (see broker runtime log, Broker1.trace), in response to which the broker sequentially calls the "activate()" functions in its Activatable services. Each "activate()" function activates one of the broker's modules and typically results in one or more actions sent back as messages to the server.  
 
 
-### Tariff Publication Algorithms
-One of the core components of TacTex is it's tariff publication algorithms. These algorithms are part of the core algorithm of the agent, named LATTE, 
-algorithm:                                                                      
+### Tariff Publication/Revocation Strategies
+
+TacTex's main algorithm, named LATTE, is executed at every timestep. 
+LATTE is described in detail in Daniel Urieli's Ph.D dissertation (see below).
+At the core of LATTE is a tariff publication/revocation strategy, which determines
+the tariffs published/revoked in the tariff market. LATTE, and correspondingly
+TacTex's code, allows for easily plugging-in and exploring different tariff
+publication strategies. The main strategies for publishing consumption tariffs
+are briefly described next (strategies for production tariffs work similarly, starting
+with the method PortfolioManagerService.checkAndPossiblyPublishProductionTariff()).
+The main flow is as follows:
 ```
-  portfoliomgr: selecttariffactions()
-    utilityarchitectureactiongenerator: tariffoptimizer.optimizetariffs()
-      tariffoptimizeroneshot:
-        suggesttariffs
-        computeshiftedenergy (for customer-tariff pairs)
-        estimaterelevanttariffcharges
-        estimateutilities
-          predictutility
-            predictcustomermigration
-            estimateutility
-      tariffoptimizerbinaryoneshot:
-        suggesttariffs
-        computeshiftedenergy (for customer-tariff pairs)
-        estimaterelevanttariffcharges
-        binarysearchoptimize (estimate utilities in binary search)
-      tariffoptimizerincremental:
-        tariffoptimizeroneshot.findfixedrateseed
-        optimizerwrapper.findoptimum (e.g. gradientascent)
-          setstepsize
-          computederivatives
-            evaluatepoint
-              value
-                computeshiftedenergy
-                estimaterelevanttariffcharges
-                estimateutilities (=> like above)
-                  predictutility
-                    predictcustomermigration
-                    estimateutility
-      tariffoptimizertoufixedmargin
-        tariffoptimizeroneshot.findfixedrateseed
-        computeshiftedenergy
-        predictenergycosts
-        createtarifffromfixedmargin
-      tariffoptimizerrevoke
-        removeeachtariff
-        predictutility
-          predictcustomermigration
-          estimateutility
+  PortfolioManagerService.checkAndPossiblyPublishConsumptionTariff()  // calls:
+  UtilityArchitectureActionGenerator.selectTariffActions()            // calls:
+  TariffOptimizer.Optimizetariffs()
+```
+
+TariffOptimizer is an interface that is implemented by different concrete classes
+that instantiate specific tariff publication strategies. The pseudo code of these
+classes' implementation appears next, where an indented method is called by the 
+first method above it with a lower indentation level.
+```
+        // generate and evaluate a set of candidate tariffs
+        class TariffOptimizerOneshot: 
+          suggestTariffs
+          computeShiftedEnergy (for customer-tariff pairs) // how customers will shift energy per tariff
+          estimateRelevantTariffCharges // customer charges per tariff
+          estimateUtilities // predict tariff utilities
+            predictUtility // predict utility of a single tariff
+              predictCustomerMigration // predict how customers will migrate between tariffs
+              estimateUtility // estimate the resulting tariff utility for TacTex
+        
+        // binary search based tariff optimization (assumes convexity), efficient version of TariffOptimizerOneshot
+        class TariffOptimizerBinaryOneshot: 
+          suggestTariffs // suggest candidate tariffs 
+          computeShiftedEnergy (for customer-tariff pairs) // how customers will shift energy per tariff
+          estimateRelevantTariffCharges // customer charges per tariff
+          binarySearchOptimize // assuming convexity, estimate utilities of a subset of tariffs using binary search
+
+        // iteratively generate and evaluate tariffs; a framework for optimization algorithms 
+        // such as gradient ascent, coordinate ascent, Amoeba, BOBYQA, Powell's and others.
+        class TariffOptimizerIncremental:
+          tariffOptimizerOneshot.findFixedRateSeed // find best fixed-rate tariff, use it as a seed
+          optimizerWrapper.findOptimum // (e.g. gradient ascent, coordinate ascent)
+            setStepSize // optimziation step size
+            Loop:
+              generateNextPoint // a point is a d-dimensional tariff 
+                evaluatePoint // evaluate tariff
+                  value
+                    computeShiftedEnergy // similarly to above
+                    estimateRelevantTariffCharges // similarly to above
+                    estimateUtilities // similarly to above
+                      predictUtility // similarly to above
+                        predictCustomerMigration // similarly to above
+                        estimateUtility // similarly to above
+
+        // a baseline method for TOU optimization, see our AAAI-16 paper below
+        class TariffOptimizerTOUFixedMargin: 
+          tariffOptimizerOneshot.findFixedRateSeed // find best fixed-rate tariff
+          computeShiftedEnergy // how customers will shift per tariff
+          predictEnergyCosts // predict TacTex's energy costs in the wholesale market
+          createTariffFromFixedMargin // set selling price to a fixed margin above costs
+
+        // optimizing tariff revocations
+        class TariffOptimizerRevoke:
+          removeEachTariff // simulate tariff removal
+          predictUtility // predict resulting utility
+            predictCustomerMigration // predict how customers will migrate
+            estimateUtility // predict utility of specific removal
 ```
 
 
