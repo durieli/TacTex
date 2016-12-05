@@ -84,7 +84,7 @@ first method above it with a lower indentation level.
         class TariffOptimizerIncremental:
           tariffOptimizerOneshot.findFixedRateSeed // find best fixed-rate tariff, use it as a seed
           optimizerWrapper.findOptimum // (e.g. gradient ascent, coordinate ascent)
-            setStepSize // optimziation step size
+            setStepSize // optimization step size
             Loop:
               generateNextPoint // a point is a d-dimensional tariff 
                 evaluatePoint // evaluate tariff
