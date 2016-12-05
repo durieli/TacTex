@@ -53,8 +53,8 @@ with the method PortfolioManagerService.checkAndPossiblyPublishProductionTariff(
 The main flow is as follows:
 ```
   PortfolioManagerService.checkAndPossiblyPublishConsumptionTariff()  // calls:
-  UtilityArchitectureActionGenerator.selectTariffActions()            // calls:
-  TariffOptimizer.Optimizetariffs()
+    UtilityArchitectureActionGenerator.selectTariffActions()          // calls:
+      TariffOptimizer.Optimizetariffs()
 ```
 
 TariffOptimizer is an interface that is implemented by different concrete classes
