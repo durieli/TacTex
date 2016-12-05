@@ -1,0 +1,93 @@
+./src/test/java/edu/utexas/cs/tactex/SampleBrokerTest.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/test/java/edu/utexas/cs/tactex/core/BrokerPauseTest.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/test/java/edu/utexas/cs/tactex/PortfolioManagerTest.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/utilityestimation/UtilityArchitectureActionGenerator.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/utilityestimation/UtilityArchitectureTariffRevoker.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApachePowell.java:public class OptimizerWrapperApachePowell implements OptimizerWrapper {
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApachePowell.java:            new ObjectiveFunction(new OptimizerWrapperApacheObjective(tariffUtilityEstimate)),
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheObjective.java:public class OptimizerWrapperApacheObjective implements MultivariateFunction {
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheObjective.java:  public OptimizerWrapperApacheObjective(TariffUtilityEstimate tariffUtilityEstimate) {
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheAmoeba.java:public class OptimizerWrapperApacheAmoeba implements OptimizerWrapper {
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheAmoeba.java:            new ObjectiveFunction(new OptimizerWrapperApacheObjective(tariffUtilityEstimate)),
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheBOBYQA.java:public class OptimizerWrapperApacheBOBYQA implements OptimizerWrapper {
+./src/main/java/edu/utexas/cs/tactex/tariffoptimization/OptimizerWrapperApacheBOBYQA.java:            new ObjectiveFunction(new OptimizerWrapperApacheObjective(tariffUtilityEstimate)),
+./src/main/java/edu/utexas/cs/tactex/PortfolioManagerService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:import edu.utexas.cs.tactex.tariffoptimization.OptimizerWrapperApacheAmoeba;
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:import edu.utexas.cs.tactex.tariffoptimization.OptimizerWrapperApacheBOBYQA;
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:import edu.utexas.cs.tactex.tariffoptimization.OptimizerWrapperApachePowell;
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    // Apache Amoeba 
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    TariffOptimizer tariffOptimizerAmoeba = new TariffOptimizerIncremental(withdrawFeesOptimizer, tariffRepoMgr, chargeEstimator, shiftingPredictor, tariffOptimizerBinaryOneShot, new OptimizerWrapperApacheAmoeba(), utilityEstimator, marketPredictionManager, this);
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    // Apache BOBYQA 
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    TariffOptimizer tariffOptimizerBOBYQA = new TariffOptimizerIncremental(withdrawFeesOptimizer, tariffRepoMgr, chargeEstimator, shiftingPredictor, tariffOptimizerBinaryOneShot, new OptimizerWrapperApacheBOBYQA(), utilityEstimator, marketPredictionManager, this);
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    // Apache Powell's method
+./src/main/java/edu/utexas/cs/tactex/ConfiguratorFactoryService.java:    TariffOptimizer tariffOptimizerPowell = new TariffOptimizerIncremental(withdrawFeesOptimizer, tariffRepoMgr, chargeEstimator, shiftingPredictor, tariffOptimizerBinaryOneShot, new OptimizerWrapperApachePowell(), utilityEstimator, marketPredictionManager, this);
+./src/main/java/edu/utexas/cs/tactex/core/BrokerRunner.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/BrokerMain.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/JmsManagementService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/MessageDispatcher.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/BrokerMessageReceiver.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/PowerTacBroker.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/BrokerPropertiesService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/core/BrokerTournamentService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/ContextManagerService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/CapacityStructure.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/CapacityProfile.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/ProbabilityDistribution.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/DefaultCapacityBundle.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/ProfileRecommendation.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/TariffSubscriberStructure.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/FactoredCustomerService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/ParserFunctions.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/utils/SeedIdGenerator.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/CustomerFactory.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/DefaultFactoredCustomer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/AdaptiveCapacityBundle.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/LearningUtilityOptimizer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/TimeseriesGenerator.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/LearningFactoredCustomer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/ProfileOptimizerStructure.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/CustomerStructure.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/AdaptiveCapacityOriginator.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/TimeseriesStructure.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/DefaultCapacityOriginator.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/DefaultUtilityOptimizer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/LearningCustomerCreator.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/interfaces/FactoredCustomer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/interfaces/CapacityBundle.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/interfaces/UtilityOptimizer.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/factoredcustomer/interfaces/CapacityOriginator.java:* Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/RegulationCapacity.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/TariffEvaluator.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/AbstractCustomer.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/repo/ServerBasedWeatherForecastRepo.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/repo/RandomSeedRepo.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/repo/ServerBasedWeatherReportRepo.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/repo/TariffSubscriptionRepo.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/TariffSubscription.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/TransactionFactory.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/TariffMarket.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/BootstrapDataCollector.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/NewTariffListener.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/BalancingMarket.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/BrokerProxy.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/BootstrapState.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/ServerConfiguration.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/VisualizerMessageListener.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/InitializationService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/VisualizerProxy.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/TimeslotPhaseProcessor.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/CompetitionControl.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/CompetitionSetup.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/PhysicalEnvironment.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/Accounting.java: * Copyright 2009-2010 the original author or authors. Licensed under the Apache
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/Auctioneer.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/CustomerModelAccessor.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/CapacityControl.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/interfaces/ServerProperties.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/servercustomers/common/RandomSeed.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/MarketManagerService.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/interfaces/MarketManager.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/interfaces/PortfolioManager.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/interfaces/BrokerContext.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/interfaces/Initializable.java: * Licensed under the Apache License, Version 2.0 (the "License");
+./src/main/java/edu/utexas/cs/tactex/interfaces/Activatable.java: * Licensed under the Apache License, Version 2.0 (the "License");

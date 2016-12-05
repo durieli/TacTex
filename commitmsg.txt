@@ -1,0 +1,60 @@
+new code: 
+  server based customer migration predictor
+changes to existing code:
+  withdraw fees:
+    Add withdraw fees after knowing candidate tariff charges, and before migration prediction
+    use withdraw fees for (1) migration prediction (2) utility computation
+    many cutCorners, see below
+  smaller changes:
+    option to stop publications in PortfolioMgrService
+    add/remove specs from repo: 
+      locally, not globally
+      moved the adding/removing suggested specs from/to repo to UtilityEstimatorDefaultForConsumption
+    TariffRepoMgrService
+      setting tariff state to active when adding to repo
+      adding findRecentlyActiveTariffs 
+    pom.xml: option to integrate with server
+
+CUTCORNERS/TODO:
+  (-) NON-ROBUST: ignoring regulation charges in charge estimator
+  (-) protections - shouldn't be there for perfect utility-arch:
+    (-) 0.8-1.2
+    (-) initpubperiod + once every 24 hours + pubint(?) - but how to handle inertia which we ignore
+    (-) force publishing in first 5 opportunities - hard coded decision, and 5
+      (StochasticConsumptionTariffGenerator)
+    (-) ignoring competing tariffs below market-bound - sometimes its incorrect to do so (withdraw fees can still give positive utility)
+  (-) server-based customer prediction
+    (-) order of tariffs that are published together is wrong (random, different in server vs. broker)
+    (-) ignoring inertia
+    (-) hidden competitor subscriptions:
+      (-) Best competitor assumption: missing subs are with bestCompetitor
+      (-) More issues in finding best/median/worst competitor 
+        (-) NON-ROBUST: ignoring inconvenience (which is computed inside the
+          tariff evaluator..) thus will not work well with non-fixed-rates
+        (-) copied from regression based migration predictor, not tested
+    (-) ServerBasedTariffEvaluator
+      (-) how to use non-server-based model
+      (-) DANGEROUS! - (to adjust with withdraw fees) scaling costs to 1 week and by x 1.2 
+        (-) scaling is hard coded (e.g. my horizon is hard coded as 7 and not taken globally) and non robust
+      (-) NON-ROBUST: superceding tariffs not handled(?)
+      (-) in hard-coded server data (inside ServerBasedMigrationPredictor)
+        (-) NON-ROBUST: hard-coded rather than estimated params 
+        (-) ignoring regulation factors 
+        (-) using some assumptions regarding values we don't know
+      (-) ignoring subscription times (to know 'expired' and 'withdraw fees')
+        (-) assuming all expired and will not pay withdraw fees for migration prediction
+      (-) arbitrarily simulate 12 iterations of migrations (3 days)
+      (-) compute expected migration, not actual
+      (-) ignoring inertia
+    (-) Server model accessor hard coded
+  (-) withdraw-fees: (UtilityEstimatorDefaultForConsumption)
+    (-) hard-coded constants when setting fees:
+      (-) min duration is 1 week
+      (-) withdraw fee is 0.5 * avgCharge of tariffs
+    (-) how to determine withdraw fee period and fee? can using no-fees win (with softmax? with perfect rationality?)
+    (-) fee determined only based on charge, as 0.5 * avgCharge (not actual utility with publication-fee, like used to in initial implementation that ignored fees for utility computation)
+    (-) in utility-arch: 
+      (-) computing only the immediate effect of migrations, but not future migrations from the new tariff
+      (-) better-than: assuming all will pay future fees
+      (-) better-than: assuming non will pay future fees (erasmus14 broker)
+
